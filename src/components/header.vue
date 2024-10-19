@@ -8,7 +8,7 @@ const newUserStore = userStore();
 const newLoginStore = loginStore();
 
 const { loginStatus } = storeToRefs(newLoginStore);
-const { userId } = storeToRefs(newUserStore);
+const { userInfo } = storeToRefs(newUserStore);
 const activeIndex = ref("0");
 
 const pushToLogin = () => {
@@ -19,16 +19,20 @@ const pushToRegister = () => {
   router.push("/Register");
 };
 
+const pushToMain = () => {
+  router.push("/Main");
+};
+
 const pushToOut = () => {
   loginStatus.value = false;
-  userId.value = -1;
+  userInfo.value.id = -1;
   router.push("/Login");
 };
 </script>
 
 <template>
   <el-menu :default-active="activeIndex" class="menu" mode="horizontal" :ellipsis="false">
-    <el-menu-item index="0">
+    <el-menu-item index="0" @click="pushToMain">
       <div class="flex items-center">
         <span class="text-large font-600 mr-3"> 白糖论坛 </span>
       </div>
@@ -42,7 +46,7 @@ const pushToOut = () => {
       </div>
       <div v-show="loginStatus" :key="2">
         <div style="display: flex ; flex-direction:row">
-          <el-button class="ml-2 button" @click="pushToOut">退出</el-button>
+          <el-button class="ml-2 button" @click="pushToOut">退出登录</el-button>
         </div>
       </div>
     </div>

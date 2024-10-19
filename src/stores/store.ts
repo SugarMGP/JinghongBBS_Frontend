@@ -20,13 +20,17 @@ export const loginStore = defineStore('login',
 
 export const userStore = defineStore("user",
 	() => {
-		const userId = ref(-1);
-		const setUserInfo = (id : number) => {
-            userId.value = id;
+		const userInfo = ref({
+			id: -1,
+			username: "",
+		});
+		const setUserInfo = (id : number, username : string) => {
+            userInfo.value.id = id;
+			userInfo.value.username = username;
 		};
 
 		return {
-			userId,
+			userInfo,
 			setUserInfo,
 		};
 	},
